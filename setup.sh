@@ -134,6 +134,7 @@ EOF
 
 # Enable and start the services
 echo -e "${BLUE}Enabling and starting services${NC}"
+echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 sudo systemctl daemon-reload
 sudo systemctl enable api.service stats.service
 sudo systemctl start api.service stats.service
