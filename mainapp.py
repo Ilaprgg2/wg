@@ -54,7 +54,7 @@ def add_wg_user(name, date, usage, interface):
     
     return None
 
-def remove_wg_user(name, public_key, interface):
+def remove_wg_user(name, interface):
     user = database.get_user_by_name(name)
     mod_peer.remove_peer(user[3], interface)
     database.remove_user(name)
@@ -89,26 +89,26 @@ def get_latest_handshake(interface, public_key):
             parts = line.split()
             if len(parts) == 2 and parts[0] == public_key:
                 # Get the timestamp
-                timestamp = int(parts[1])
+                return parts[1]
                 
-                # Calculate the time difference
-                time_diff = int(time.time()) - timestamp
+                # # Calculate the time difference
+                # time_diff = int(time.time()) - timestamp
                 
-                # Convert to human-readable format
-                if time_diff < 60:
-                    return f"{time_diff} second{'s' if time_diff != 1 else ''} ago"
-                elif time_diff < 3600:
-                    minutes = time_diff // 60
-                    seconds = time_diff % 60
-                    return f"{minutes} minute{'s' if minutes != 1 else ''}, {seconds} second{'s' if seconds != 1 else ''} ago"
-                elif time_diff < 86400:
-                    hours = time_diff // 3600
-                    minutes = (time_diff % 3600) // 60
-                    return f"{hours} hour{'s' if hours != 1 else ''}, {minutes} minute{'s' if minutes != 1 else ''} ago"
-                else:
-                    days = time_diff // 86400
-                    hours = (time_diff % 86400) // 3600
-                    return f"{days} day{'s' if days != 1 else ''}, {hours} hour{'s' if hours != 1 else ''} ago"
+                # # Convert to human-readable format
+                # if time_diff < 60:
+                #     return f"{time_diff} second{'s' if time_diff != 1 else ''} ago"
+                # elif time_diff < 3600:
+                #     minutes = time_diff // 60
+                #     seconds = time_diff % 60
+                #     return f"{minutes} minute{'s' if minutes != 1 else ''}, {seconds} second{'s' if seconds != 1 else ''} ago"
+                # elif time_diff < 86400:
+                #     hours = time_diff // 3600
+                #     minutes = (time_diff % 3600) // 60
+                #     return f"{hours} hour{'s' if hours != 1 else ''}, {minutes} minute{'s' if minutes != 1 else ''} ago"
+                # else:
+                #     days = time_diff // 86400
+                #     hours = (time_diff % 86400) // 3600
+                #     return f"{days} day{'s' if days != 1 else ''}, {hours} hour{'s' if hours != 1 else ''} ago"
         
         # If the public key is not found
         return "Never"
