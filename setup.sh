@@ -34,7 +34,7 @@ sudo apt install -y python3 python3-pip wireguard wireguard-tools
 
 # Install Python packages
 echo -e "${BLUE}Installing Python packages${NC}"
-pip3 install $PACKAGES
+pip3 install $PACKAGES --break-system-packages
 
 # Clone the GitHub repository
 echo -e "${BLUE}Cloning repository${NC}"
