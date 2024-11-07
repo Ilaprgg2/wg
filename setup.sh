@@ -76,7 +76,7 @@ fi
 echo -e "${BLUE}Creating WireGuard configuration${NC}"
 cat << EOF | sudo tee /etc/wireguard/wgg.conf
 [Interface]
-Address = 11.0.0.1/24
+Address = 11.0.0.1/22
 SaveConfig = true
 PostUp = iptables -I INPUT -p udp --dport $port -j ACCEPT; iptables -I FORWARD -i eth0 -o %i -j ACCEPT; iptables -I FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -D INPUT -p udp --dport $port -j ACCEPT; iptables -D FORWARD -i eth0 -o %i -j ACCEPT; iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
