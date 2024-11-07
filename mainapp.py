@@ -34,7 +34,7 @@ def find_next_available_ip(start_ip):
         current_ip += 1
 
         # Check if we've reached the maximum possible IPv4 address
-        if current_ip == ipaddress.IPv4Address('255.255.255.255'):
+        if current_ip == ipaddress.IPv4Address('11.0.3.255'):
             print("No IPs Left")
             return None  # No available IP in the entire IPv4 range
 
